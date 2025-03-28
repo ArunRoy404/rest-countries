@@ -15,13 +15,15 @@ function App() {
 
   return (
     <>
-      <h1 className='text-5xl font-bold' >Visit Countries</h1>
-      <div className='border-2 mt-4 p-5'>
-        <ErrorBoundary fallback={<h2 className='text-2xl font-bold'>Something Went Wrong!</h2>}>
-          <Suspense fallback={<h2 className='text-2xl font-bold'>Countries Loading..........</h2>}>
-            <Countries fetchCountries={fetchCountries}></Countries>
-          </Suspense>
-        </ErrorBoundary>
+      <div>
+        <h1 className='text-5xl font-bold' >Visit Countries</h1>
+        <div className='border-2 mt-4 p-5'>
+          <ErrorBoundary fallback={<h2 className='text-2xl font-bold'>Something Went Wrong!</h2>}>
+            <Suspense fallback={<h2 className='text-2xl font-bold'>Countries Loading..........</h2>}>
+              <Countries fetchCountries={fetchCountries}></Countries>
+            </Suspense>
+          </ErrorBoundary>
+        </div>
       </div>
     </>
   )

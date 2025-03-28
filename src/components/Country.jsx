@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Country = ({ country, handleVisitedCountry, handleNotVisitedCountry}) => {
+const Country = ({ country, handleVisitedCountry, handleNotVisitedCountry, handleVisitedFlags, handleNotVisitedFlags}) => {
     // console.log(country)
 
     const [isVisited, setIsVisited] = useState(false)
@@ -8,11 +8,13 @@ const Country = ({ country, handleVisitedCountry, handleNotVisitedCountry}) => {
     const handleVisited = () =>{
         setIsVisited(!isVisited)
         handleVisitedCountry(country)
+        handleVisitedFlags(country.flags.png)
     }
 
     const handleNotVisited = () => {
         setIsVisited(!isVisited)
         handleNotVisitedCountry(country)
+        handleNotVisitedFlags(country.flags.png)
     }
 
     return (
