@@ -53,7 +53,7 @@ const Countries = ({ fetchCountries }) => {
                     <div className='h-[40ch] mt-5 overflow-auto'>
                         <div className='flex flex-wrap gap-2'>
                             {
-                                visitedFlags.map(flag => <img className='h-10' src={flag}></img>)
+                                visitedFlags.map((flag, index) => <img key={index} className='h-10' src={flag}></img>)
                             }
                         </div>
                     </div>
