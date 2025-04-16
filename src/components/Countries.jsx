@@ -4,36 +4,25 @@ import Country from './Country';
 
 const Countries = ({ fetchCountries }) => {
     const countries = use(fetchCountries)
-
-
+    
     const [visitedCountries, setVisitedCountries] = useState([])
-    const [visitedFlags, setVisitedFlags] = useState([])
 
-
-    const handleVisitedCountry = (country) => {
-        setVisitedCountries([...visitedCountries, country])
+    const handleVisitedCountries = (country) =>{
+        setVisitedCountries([...visitedCountries, country])    
     }
 
-    const handleNotVisitedCountry = (country) => {
-        const newVisitedCountries = visitedCountries.filter(c => c !== country)
+    const handleNotVisitedCountries = (country) =>{
+        const newVisitedCountries = visitedCountries.filter(c=> c.cca3!=country.cca3)
         setVisitedCountries(newVisitedCountries)
     }
-
-    const handleVisitedFlags = (flag) => {
-        setVisitedFlags([...visitedFlags, flag])
-    }
-
-    const handleNotVisitedFlags = (flag) => {
-        const newVisitedFlags = visitedFlags.filter(f => f !== flag)
-        setVisitedFlags(newVisitedFlags)
-    }
+    
 
 
     return (
         <div className='h-[80vh]'>
             <div>
                 <h2 className='text-2xl font-bold'>Visiting Countries: {countries.length - 1}</h2>
-                <h3 className='text-xl font-bold'>Visited so far: {visitedCountries.length}</h3>
+                <h3 className='text-xl font-bold'>Visited so far: </h3>
 
             </div>
 
@@ -44,7 +33,7 @@ const Countries = ({ fetchCountries }) => {
                     <div className='h-[30vh] mt-5 overflow-auto'>
                         <ol className='list-decimal pl-7 mt-1 h-full'>
                             {
-                                visitedCountries.map(country => <li className='font-bold' key={country.cca2}>{country.name.common}</li>)
+                                visitedCountries.map(country=> <li className='font-bold' key={country.cca2} >{country.name.common}</li>)
                             }
                         </ol>
                     </div>
@@ -53,7 +42,7 @@ const Countries = ({ fetchCountries }) => {
                     <div className='h-[40ch] mt-5 overflow-auto'>
                         <div className='flex flex-wrap gap-2'>
                             {
-                                visitedFlags.map((flag, index) => <img key={index} className='h-10' src={flag}></img>)
+                                visitedCountries.map((country, index)=><img key={index} className='h-10' src={country.flags.png}></img>)
                             }
                         </div>
                     </div>
@@ -66,12 +55,8 @@ const Countries = ({ fetchCountries }) => {
                         countries.map(country => {
                             return (country.name.common.toLowerCase() == 'israel'.toLowerCase()) ||
                                 <Country
-                                    handleVisitedCountry={handleVisitedCountry}
-                                    handleNotVisitedCountry={handleNotVisitedCountry}
-
-                                    handleVisitedFlags={handleVisitedFlags}
-                                    handleNotVisitedFlags={handleNotVisitedFlags}
-
+                                    handleVisitedCountries={handleVisitedCountries}
+                                    handleNotVisitedCountries={handleNotVisitedCountries}
                                     key={country.cca3}
                                     country={country}>
                                 </Country>
